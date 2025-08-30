@@ -1,33 +1,40 @@
 return {
-    {
-        "mason-org/mason.nvim",
-        -- lazy=false,
-        -- config=function()
-        --     require("mason").setup({
-        --     })
-        -- end,
-        opts={
-            ui = {
-                icons = {
-                    package_installed = "✓",
-                    package_pending = "➜",
-                    package_uninstalled = "✗"
-                }
-            },
-        }
-    },
-    {
-        "mason-org/mason-lspconfig.nvim",
-        opts = {
-            ensure_installed={"lua_ls", "clangd", "julials", "texlab", "marksman",},
-        },
-        dependencies = {
-            "neovim/nvim-lspconfig",
-        },
-    },
+    -- {
+    --     "mason-org/mason.nvim",
+    --     -- lazy=false,
+    --     -- config=function()
+    --     --     require("mason").setup({
+    --     --     })
+    --     -- end,
+    --     opts={
+    --         ui = {
+    --             icons = {
+    --                 package_installed = "✓",
+    --                 package_pending = "➜",
+    --                 package_uninstalled = "✗"
+    --             }
+    --         },
+    --     }
+    -- },
+    -- {
+    --     "mason-org/mason-lspconfig.nvim",
+    --     opts = {
+    --         ensure_installed={"lua_ls", "texlab", "marksman",},
+    --     },
+    --     dependencies = {
+    --         "neovim/nvim-lspconfig",
+    --     },
+    -- },
     {
         "neovim/nvim-lspconfig",
         config=function()
+            vim.lsp.enable({
+                'julials',
+                'clangd',
+                'texlab',
+                'r_language_server',
+                'marksman'
+            })
             vim.lsp.config('lua_ls', {
                 on_init = function(client)
                     if client.workspace_folders then
@@ -76,10 +83,6 @@ return {
                     Lua = {}
                 }
             })
-            vim.lsp.enable("clangd")
-            vim.lsp.enable("julials")
-            vim.lsp.enable("texlab")
-            vim.lsp.enable("marksman")
             vim.api.nvim_create_autocmd("LspAttach", {
                 group = vim.api.nvim_create_augroup("UserLspConfig", {}),
                 callback = function(ev)
