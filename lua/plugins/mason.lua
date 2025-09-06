@@ -33,7 +33,8 @@ return {
                 'clangd',
                 'texlab',
                 'r_language_server',
-                'marksman'
+                'marksman',
+                'typst_lsp',
             })
             vim.lsp.config('lua_ls', {
                 on_init = function(client)
