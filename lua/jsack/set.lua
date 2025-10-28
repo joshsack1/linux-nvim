@@ -28,3 +28,5 @@ vim.keymap.set("n", "L", "$")
 -- Set up a transparent background
 vim.api.nvim_set_hl(0, "Normal", {bg = "none"})
 vim.api.nvim_set_hl(0, "NormalFloat", {bg = "none"})
+ -- Color the 93rd column
+vim.opt.colorcolumn = "93"
